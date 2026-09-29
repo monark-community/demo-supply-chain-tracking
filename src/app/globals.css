@@ -1,0 +1,233 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ChainProof identity: "manifest-grade, stamped, legible".
+ * Paper and ink surfaces, one loud colour (safety yellow) for "this is live / your turn".
+ * Overrides the Monark UI registry theme variables; ratios are listed in docs/site-plan.md §8.
+ */
+:root {
+  --background: #f3f1ea;
+  --foreground: #15171a;
+  --card: #fbfaf6;
+  --card-foreground: #15171a;
+  --popover: #fbfaf6;
+  --popover-foreground: #15171a;
+  --primary: #15171a;
+  --primary-foreground: #f3f1ea;
+  --secondary: #e7e4da;
+  --secondary-foreground: #15171a;
+  --muted: #e7e4da;
+  --muted-foreground: #595c62;
+  --accent: #f5c400;
+  --accent-foreground: #15171a;
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --success: #1d6a41;
+  --success-soft: #d9eadd;
+  --warning: #855400;
+  --warning-ink: #6b4300;
+  --warning-soft: #f8e6b0;
+  --danger-soft: #f6dcd8;
+  --border: #d6d1c3;
+  --input: #8c877a;
+  --ring: #15171a;
+  --rule: #15171a;
+  --hi: #f5c400;
+  --hi-ink: #15171a;
+  --chart-1: #1d6a41;
+  --chart-2: #b42318;
+  --chart-3: #8f6b00;
+  --chart-4: #3e5870;
+  --chart-5: #6a6d73;
+  --radius: 0.25rem;
+}
+
+.dark {
+  --background: #111214;
+  --foreground: #ece9e0;
+  --card: #1a1b1e;
+  --card-foreground: #ece9e0;
+  --popover: #1a1b1e;
+  --popover-foreground: #ece9e0;
+  --primary: #f5c400;
+  --primary-foreground: #111214;
+  --secondary: #25272b;
+  --secondary-foreground: #ece9e0;
+  --muted: #25272b;
+  --muted-foreground: #a6a59e;
+  --accent: #f5c400;
+  --accent-foreground: #111214;
+  --destructive: #f28b7f;
+  --destructive-foreground: #111214;
+  --success: #6fcf97;
+  --success-soft: #16301f;
+  --warning: #f2b84b;
+  --warning-ink: #f2b84b;
+  --warning-soft: #33280f;
+  --danger-soft: #3a1c19;
+  --border: #2e3035;
+  --input: #6b6d72;
+  --ring: #f5c400;
+  --rule: #ece9e0;
+  --hi: #f5c400;
+  --hi-ink: #111214;
+  --chart-1: #6fcf97;
+  --chart-2: #f28b7f;
+  --chart-3: #f5c400;
+  --chart-4: #8fb3d1;
+  --chart-5: #a6a59e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-rule: var(--rule);
+  --color-hi: var(--hi);
+  --color-hi-ink: var(--hi-ink);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-ink: var(--warning-ink);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --animate-stamp: stamp 380ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  --animate-draw: draw 600ms ease-out both;
+  --animate-scan: scan 2.4s ease-in-out infinite alternate;
+  --animate-tick: tick 260ms ease-out both;
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.35) rotate(-9deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-4deg);
+  }
+}
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes scan {
+  from {
+    top: 8%;
+  }
+  to {
+    top: 88%;
+  }
+}
+@keyframes tick {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-variation-settings: "wdth" 100;
+  }
+  ::selection {
+    background: var(--hi);
+    color: var(--hi-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Condensed stencil-like display type (Archivo width axis). */
+  .font-display {
+    font-weight: 800;
+    font-variation-settings: "wdth" 72;
+    letter-spacing: -0.01em;
+  }
+  .font-condensed {
+    font-variation-settings: "wdth" 80;
+  }
+  .label-caps {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .shadow-hard {
+    box-shadow: 3px 3px 0 0 var(--rule);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
