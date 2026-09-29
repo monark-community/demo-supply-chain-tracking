@@ -76,7 +76,8 @@ export function TempChart({
   })
   if (s >= 0) runs.push([s, all.length - 1])
 
-  const ticks = [0, Math.floor((all.length - 1) / 3), Math.floor(((all.length - 1) * 2) / 3), all.length - 1]
+  const last = all.length - 1
+  const ticks = iw < 420 ? [0, Math.floor(last / 2), last] : [0, Math.floor(last / 3), Math.floor((last * 2) / 3), last]
   const yTicks = Array.from(new Set([yMin, cc.min, cc.max, yMax]))
   const split = sealed.length
   const hv = hover !== null ? all[hover] : undefined
@@ -153,7 +154,8 @@ export function TempChart({
         {/* direct labels */}
         {runs[0] && (
           <text
-            x={Math.min(x(runs[0][0]), pad.l + iw - 90)}
+            x={x(runs[0][1]) + 110 < pad.l + iw ? x(runs[0][1]) + 8 : x(runs[0][0]) - 8}
+            textAnchor={x(runs[0][1]) + 110 < pad.l + iw ? "start" : "end"}
             y={pad.t + 12}
             className="fill-destructive text-[11px] font-semibold"
           >

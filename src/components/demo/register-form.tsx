@@ -117,7 +117,6 @@ export function RegisterScreen() {
     <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 md:py-12">
       <header className="mb-8 border-b-2 border-rule pb-6">
         <h1 className="font-display text-4xl leading-none sm:text-5xl">{dict.app.register.title}</h1>
-        <p className="mt-2 max-w-2xl text-muted-foreground">{dict.app.register.intro}</p>
       </header>
       <RegisterForm key={orgId ?? "none"} />
     </div>
@@ -371,7 +370,6 @@ function RegisterForm() {
             <p className="text-sm font-semibold" aria-hidden>
               {r.route}
             </p>
-            <p className="text-xs text-muted-foreground">{r.routeHint}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <Field id="rg-carrier" label={`1 · ${r.carrier}`}>
@@ -414,7 +412,6 @@ function RegisterForm() {
       <aside className="h-fit border-2 border-rule bg-card p-4 shadow-hard lg:sticky lg:top-24">
         <p className="label-caps text-[10px] text-muted-foreground">{r.lotCode}</p>
         <p className="font-mono text-3xl font-bold">{lot}</p>
-        <p className="mt-1 text-xs text-muted-foreground">{r.lotHint}</p>
         <p className="mt-4 text-sm">
           <span className="text-muted-foreground">{dict.app.sign.signingAs}</span>
           <br />

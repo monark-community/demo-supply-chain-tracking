@@ -47,14 +47,16 @@ export function SiteHeader({
         <Link href={href(locale)} aria-label={dict.nav.home} className="shrink-0 rounded-md">
           <ChainProofWordmark />
         </Link>
-        {variant === "app" && (
-          <span className="label-caps hidden rounded-sm bg-hi px-1.5 py-0.5 text-[10px] text-hi-ink xl:inline">
-            {dict.common.demoBadge}
-          </span>
-        )}
         <NavLinks items={items} label={dict.nav.main} className="hidden lg:block" />
         <div className="ml-auto flex items-center gap-2">
           <div className="hidden items-center gap-2 lg:flex">
+            <span
+              className="label-caps inline-flex h-7 items-center gap-1.5 rounded-sm border border-rule bg-hi/30 px-2 text-[10px]"
+              title={dict.common.demoBadge}
+            >
+              <span className="size-1.5 bg-rule" aria-hidden />
+              {dict.common.demoChip}
+            </span>
             <LocaleSwitch locale={locale} label={dict.common.language} names={dict.common.languageNames} />
             <ThemeToggle label={dict.common.theme} />
           </div>

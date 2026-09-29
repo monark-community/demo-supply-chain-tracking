@@ -141,7 +141,6 @@ export function BatchView({ id }: { id: string }) {
               <Thermometer className="size-4" aria-hidden />
               {t(b.unsealedTitle, { logger: batch.coldChain.loggerId, n: batch.unsealed.length })}
             </p>
-            <p className="mt-1 text-sm text-warning-ink">{b.unsealedBody}</p>
           </div>
         )}
         <div className="mt-4 grid gap-2">

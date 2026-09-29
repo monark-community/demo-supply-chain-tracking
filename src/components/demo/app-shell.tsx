@@ -21,11 +21,9 @@ import { Label } from "@/components/ui/label"
 import { NetworkBadge } from "@/components/ui/network-badge"
 import { Switch } from "@/components/ui/switch"
 import { WalletAddress, WalletAvatar } from "@/components/ui/wallet"
-import { t } from "@/i18n/t"
 import { connectWallet, disconnectWallet, setFailNext } from "@/lib/demo/chain"
 import { getOrg, ORGS, ROLE_ORDER } from "@/lib/demo/orgs"
 import { isStorageBlocked, resetDemo, useDemo, useHydrated } from "@/lib/demo/store"
-import type { DemoState } from "@/lib/demo/types"
 import { cn } from "@/lib/utils"
 
 type Ui = { openConnect: () => void; openControls: () => void; connectRejected: boolean; switchTo: (orgId: string) => void }
@@ -39,11 +37,6 @@ export function useDemoUi() {
 
 const SUGGESTED = "flv"
 
-/** Batches waiting for this org's signature (for the "switched to X" toast). */
-function inboxFor(s: DemoState, orgId: string) {
-  return s.order.map((id) => s.batches[id]!).filter((b) => b.pending?.to === orgId)
-}
-
 export function DemoUiProvider({ children }: { children: React.ReactNode }) {
   const { dict } = useI18n()
   const g = dict.app.gate
@@ -54,15 +47,6 @@ export function DemoUiProvider({ children }: { children: React.ReactNode }) {
   const [choice, setChoice] = useState(SUGGESTED)
   const [confirmReset, setConfirmReset] = useState(false)
   const failNext = useDemo((s) => s.failNext)
-  const state = useDemo((s) => s)
-
-  const announceInbox = (orgId: string) => {
-    const org = getOrg(orgId)
-    for (const b of inboxFor(state, orgId)) {
-      toast(t(dict.app.toasts.handoffIn, { org: getOrg(b.pending!.from)?.name ?? "", lot: b.id }), { id: `inbox-${b.id}-${orgId}` })
-    }
-    return org
-  }
 
   const ui: Ui = {
     openConnect: () => {
@@ -76,7 +60,6 @@ export function DemoUiProvider({ children }: { children: React.ReactNode }) {
     connectRejected: rejected,
     switchTo: (orgId) => {
       connectWallet(orgId)
-      announceInbox(orgId)
     },
   }
 
@@ -143,7 +126,6 @@ export function DemoUiProvider({ children }: { children: React.ReactNode }) {
                 setRejected(false)
                 setConnectOpen(false)
                 connectWallet(choice)
-                announceInbox(choice)
               }}
             >
               {g.connect}
@@ -304,7 +286,6 @@ export function WalletGate({ children }: { children: React.ReactNode }) {
             onConnect={ui.openConnect}
             connectLabel={dict.app.wallet.connect}
           />
-          <p className="mt-6 text-xs text-muted-foreground">{dict.common.demoNotice}</p>
         </div>
       </section>
     )

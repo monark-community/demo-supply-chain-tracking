@@ -1,4 +1,4 @@
-import { ArrowRight, Check, CircleCheck, Coffee, Syringe, TreePine, X } from "lucide-react"
+import { ArrowRight, CircleCheck, Coffee, Syringe, TreePine } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -41,11 +41,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       <section className="border-b-2 border-rule">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:py-16 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-12 lg:py-20">
           <div>
-            <p className="label-caps flex items-center gap-2 text-muted-foreground">
-              <span className="inline-block size-2.5 bg-hi ring-1 ring-rule" aria-hidden />
-              {h.eyebrow}
-            </p>
-            <h1 className="font-display mt-5 text-[2.75rem] leading-[0.95] text-balance sm:text-6xl lg:text-[4.25rem]">{h.title}</h1>
+            <h1 className="font-display text-[2.75rem] leading-[0.95] text-balance sm:text-6xl lg:text-[4.25rem]">{h.title}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{h.subtitle}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -58,7 +54,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
                 <Link href={`${href(locale, "/verify")}?code=HU-2584`}>{h.ctaSecondary}</Link>
               </Button>
             </div>
-            <p className="mt-6 text-xs text-muted-foreground">{dict.common.demoBadge}</p>
           </div>
           <figure className="min-w-0">
             <Manifest
@@ -80,37 +75,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             />
             <figcaption className="mt-3 font-mono text-xs text-muted-foreground">{h.heroCaption}</figcaption>
           </figure>
-        </div>
-      </section>
-
-      {/* Compare */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <h2 className="font-display max-w-3xl text-4xl leading-none text-balance sm:text-5xl">{h.compare.title}</h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-6">
-          <div className="border border-border bg-muted/60 p-5 sm:p-7">
-            <h3 className="label-caps text-muted-foreground">{h.compare.leftTitle}</h3>
-            <ul className="mt-5 space-y-4">
-              {h.compare.left.map((item) => (
-                <li key={item} className="flex gap-3 text-muted-foreground">
-                  <X className="mt-1 size-4 shrink-0" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="border-2 border-rule bg-card p-5 shadow-hard sm:p-7">
-            <h3 className="label-caps">{h.compare.rightTitle}</h3>
-            <ul className="mt-5 space-y-4">
-              {h.compare.right.map((item) => (
-                <li key={item} className="flex gap-3 font-medium">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center bg-hi text-hi-ink ring-1 ring-rule" aria-hidden>
-                    <Check className="size-3.5" strokeWidth={3} />
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 

@@ -11,7 +11,7 @@ const en = {
   common: {
     skip: "Skip to content",
     demoBadge: "Demo · simulated data",
-    demoNotice: "Demo · simulated data. No real chain, wallet or sensor is involved; everything runs in your browser.",
+    demoChip: "Demo",
     close: "Close",
     openMenu: "Open menu",
     menuTitle: "Menu",
@@ -105,30 +105,12 @@ const en = {
     origin: "Origin",
   },
   home: {
-    eyebrow: "Supply chain custody records",
     title: "Every handoff, signed by both hands.",
     subtitle:
-      "ChainProof gives every batch a custody record that the sender and the receiver both sign, with sensor readings sealed along the way. Anyone holding the label can check the whole trip in seconds.",
+      "Sender and receiver both sign every handoff, and sensor readings are sealed on the way. Anyone with the label checks the trip in seconds.",
     ctaPrimary: "Open the demo",
     ctaSecondary: "Check a real label",
     heroCaption: "Lot HU-2584 · live passport from the demo ledger",
-    compare: {
-      title: "Paper trails can be edited. Signatures can't be un-signed.",
-      leftTitle: "The usual trail",
-      left: [
-        "Each partner keeps its own spreadsheet.",
-        "A delivery note is signed by one side only.",
-        "Temperature logs are emailed as PDFs, if at all.",
-        "A dispute means weeks of reconciling versions.",
-      ],
-      rightTitle: "With ChainProof",
-      right: [
-        "One record per batch, shared by everyone who touches it.",
-        "Custody moves only when sender and receiver both sign.",
-        "Sensor readings are sealed on the way, and breaks stay flagged.",
-        "A dispute starts from a record both sides already signed.",
-      ],
-    },
     steps: {
       title: "How custody moves",
       items: [
@@ -155,7 +137,7 @@ const en = {
     breaks: {
       eyebrow: "Cold chain",
       title: "Breaks stay on the record.",
-      body: "Loggers ride with the batch. When the carrier seals their readings, anything outside the batch's range becomes a flag that follows it to every next receiver. It can be answered, never deleted.",
+      body: "Out-of-range readings become a flag that follows the batch. It can be answered, never deleted.",
       cta: "Seal a logger in the demo",
       chartCaption: "Lot NV-0417 · logger LG-2207 · allowed range 2–8 °C",
     },
@@ -502,7 +484,6 @@ const en = {
       handoffButton: "Hand off to {org}",
       checkpointButton: "Log a checkpoint",
       unsealedTitle: "Logger {logger} has {n} unsealed readings",
-      unsealedBody: "Seal them before you hand the batch on, so the next receiver sees the whole trip.",
       reviewReadings: "Review and seal readings",
       handoffBlocked: "Seal the logger readings first.",
       deliveredTitle: "End of the route",
@@ -570,7 +551,7 @@ const en = {
       outOfRange: "Outside range",
       seal: "Seal {n} readings",
       sealTitle: "Review and seal readings",
-      sealDescription: "Sealing anchors one root hash for all readings. Anything outside the range becomes a permanent flag.",
+      sealDescription: "One root hash for all readings. Out-of-range stretches become permanent flags.",
       summaryOk: "All {n} readings within range.",
       summaryEx: "{minutes} min outside range, peak {peak}.",
       none: "This batch has no temperature logger.",
@@ -588,7 +569,6 @@ const en = {
       template: "Start from",
       templates: { coffee: "Green coffee", vaccine: "Vaccine", timber: "Glulam beams", blank: "Blank" },
       lotCode: "Lot code",
-      lotHint: "Assigned from your producer prefix.",
       product: "Product",
       industry: "Kind of goods",
       quantity: "Quantity",
@@ -602,7 +582,6 @@ const en = {
       certificationsHint: "Separate with commas.",
       note: "Note for the record",
       route: "Planned route",
-      routeHint: "The organizations the batch should pass through, in order.",
       carrier: "Carrier",
       receiver: "Receiver",
       final: "Final receiver",
@@ -634,9 +613,6 @@ const en = {
       producer: "Producer",
       scan: "Scan to verify",
       qrAlt: "QR code linking to the public passport for lot {lot}",
-    },
-    toasts: {
-      handoffIn: "{org} sent you {lot}. It's waiting for your signature.",
     },
   },
 }

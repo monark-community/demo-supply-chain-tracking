@@ -177,7 +177,7 @@ function nv0417(): Batch {
       count: 36,
       base: 4.8,
       seed: 417,
-      excursion: { at: 22, peak: 9.4, width: 2.6 },
+      excursion: { at: 22, peak: 9.4, width: 3.4 },
     }),
     sealed: [],
     events,

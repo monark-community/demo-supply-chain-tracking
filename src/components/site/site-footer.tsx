@@ -62,7 +62,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-5 text-[13px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p className="flex items-center gap-2">
             <span className="inline-block size-2 bg-hi ring-1 ring-rule" aria-hidden />
-            {dict.common.demoNotice}
+            {dict.common.demoBadge}
           </p>
           <a href={MONARK_URL} className="inline-flex items-center gap-1.5 hover:text-foreground" rel="noopener noreferrer">
             <MonarkMonoMark />

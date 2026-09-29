@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, Inbox, Package, Thermometer } from "lucide-react"
+import { ArrowRight, ChevronDown, Inbox, Package, Thermometer } from "lucide-react"
 import Link from "next/link"
 import { useMemo, useState } from "react"
 
@@ -181,7 +181,7 @@ export function Overview() {
                       return (
                         <tr key={b.id} className="border-b border-border hover:bg-card">
                           <td className="py-3 pr-3">
-                            <Link href={link(b)} className="font-mono font-bold underline decoration-hi decoration-2 underline-offset-4">
+                            <Link href={link(b)} className="font-mono font-bold whitespace-nowrap underline decoration-hi decoration-2 underline-offset-4">
                               {b.id}
                             </Link>
                           </td>
@@ -222,12 +222,13 @@ export function Overview() {
         </div>
 
         <aside className="space-y-8">
-          <section aria-labelledby="guide-h" className="border-2 border-rule bg-card p-4">
-            <h2 id="guide-h" className="label-caps flex items-center gap-2">
+          <details className="group border-2 border-rule bg-card">
+            <summary className="label-caps flex min-h-11 cursor-pointer list-none items-center gap-2 px-4 [&::-webkit-details-marker]:hidden">
               <span className="inline-block size-2.5 bg-hi ring-1 ring-rule" aria-hidden />
               {o.guide}
-            </h2>
-            <ol className="mt-3 space-y-3 text-sm">
+              <ChevronDown className="ml-auto size-4 transition-transform group-open:rotate-180" aria-hidden />
+            </summary>
+            <ol className="space-y-3 px-4 pb-4 text-sm">
               {o.guideSteps.map((s, i) => (
                 <li key={s} className="flex gap-2">
                   <span className="font-mono font-bold text-muted-foreground">{i + 1}.</span>
@@ -235,7 +236,7 @@ export function Overview() {
                 </li>
               ))}
             </ol>
-          </section>
+          </details>
           <section aria-labelledby="act-h">
             <h2 id="act-h" className="label-caps">{o.activityTitle}</h2>
             {activity.length === 0 ? (

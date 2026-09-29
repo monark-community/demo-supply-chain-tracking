@@ -12,8 +12,7 @@ const fr: Dictionary = {
   common: {
     skip: "Aller au contenu",
     demoBadge: "Démo · données simulées",
-    demoNotice:
-      "Démo · données simulées. Aucune vraie chaîne, aucun vrai portefeuille ni capteur : tout se passe dans votre navigateur.",
+    demoChip: "Démo",
     close: "Fermer",
     openMenu: "Ouvrir le menu",
     menuTitle: "Menu",
@@ -107,30 +106,12 @@ const fr: Dictionary = {
     origin: "Origine",
   },
   home: {
-    eyebrow: "Registre de garde pour la chaîne d'approvisionnement",
     title: "Chaque passation, signée des deux mains.",
     subtitle:
-      "ChainProof tient pour chaque lot un registre de garde que l'expéditeur et le destinataire signent tous les deux, relevés de capteurs scellés en chemin. Quiconque tient l'étiquette peut vérifier tout le trajet en quelques secondes.",
+      "L'expéditeur et le destinataire signent chaque passation, et les relevés sont scellés en route. Avec l'étiquette, on vérifie le trajet en quelques secondes.",
     ctaPrimary: "Ouvrir la démo",
     ctaSecondary: "Vérifier une étiquette",
     heroCaption: "Lot HU-2584 · passeport réel tiré du registre de démo",
-    compare: {
-      title: "Un dossier papier se modifie. Une signature ne se reprend pas.",
-      leftTitle: "La trace habituelle",
-      left: [
-        "Chaque partenaire tient son propre tableur.",
-        "Le bon de livraison n'est signé que d'un côté.",
-        "Les relevés de température circulent en PDF, quand ils circulent.",
-        "Un litige, c'est des semaines à comparer des versions.",
-      ],
-      rightTitle: "Avec ChainProof",
-      right: [
-        "Un seul registre par lot, partagé par tous ceux qui le manipulent.",
-        "La garde ne change de main que si l'expéditeur et le destinataire signent.",
-        "Les relevés sont scellés en route et les écarts restent signalés.",
-        "Un litige part d'un registre que les deux parties ont déjà signé.",
-      ],
-    },
     steps: {
       title: "Comment la garde circule",
       items: [
@@ -157,7 +138,7 @@ const fr: Dictionary = {
     breaks: {
       eyebrow: "Chaîne du froid",
       title: "Les écarts restent au registre.",
-      body: "Les enregistreurs voyagent avec le lot. Quand le transporteur scelle leurs relevés, tout ce qui sort de la plage permise devient un signalement qui suit le lot jusqu'au prochain destinataire. On peut y répondre, jamais l'effacer.",
+      body: "Un relevé hors plage devient un signalement qui suit le lot. On peut y répondre, jamais l'effacer.",
       cta: "Sceller un enregistreur dans la démo",
       chartCaption: "Lot NV-0417 · enregistreur LG-2207 · plage permise 2–8 °C",
     },
@@ -514,7 +495,6 @@ const fr: Dictionary = {
       handoffButton: "Remettre à {org}",
       checkpointButton: "Inscrire un point de contrôle",
       unsealedTitle: "L'enregistreur {logger} a {n} relevés non scellés",
-      unsealedBody: "Scellez-les avant de remettre le lot, pour que le prochain destinataire voie tout le trajet.",
       reviewReadings: "Examiner et sceller les relevés",
       handoffBlocked: "Scellez d'abord les relevés de l'enregistreur.",
       deliveredTitle: "Fin du trajet",
@@ -589,8 +569,7 @@ const fr: Dictionary = {
       outOfRange: "Hors plage",
       seal: "Sceller {n} relevés",
       sealTitle: "Examiner et sceller les relevés",
-      sealDescription:
-        "Sceller ancre une seule empreinte racine pour tous les relevés. Tout ce qui sort de la plage devient un signalement permanent.",
+      sealDescription: "Une seule empreinte racine pour tous les relevés. Les écarts deviennent des signalements permanents.",
       summaryOk: "Les {n} relevés sont dans la plage.",
       summaryEx: "{minutes} min hors plage, pointe à {peak}.",
       none: "Ce lot n'a pas d'enregistreur de température.",
@@ -608,7 +587,6 @@ const fr: Dictionary = {
       template: "Partir de",
       templates: { coffee: "Café vert", vaccine: "Vaccin", timber: "Poutres lamellées", blank: "Vierge" },
       lotCode: "Code de lot",
-      lotHint: "Attribué à partir de votre préfixe de producteur.",
       product: "Produit",
       industry: "Type de marchandise",
       quantity: "Quantité",
@@ -622,7 +600,6 @@ const fr: Dictionary = {
       certificationsHint: "Séparez-les par des virgules.",
       note: "Note au registre",
       route: "Trajet prévu",
-      routeHint: "Les organisations par lesquelles le lot doit passer, dans l'ordre.",
       carrier: "Transporteur",
       receiver: "Destinataire",
       final: "Destinataire final",
@@ -654,9 +631,6 @@ const fr: Dictionary = {
       producer: "Producteur",
       scan: "Balayer pour vérifier",
       qrAlt: "Code QR menant au passeport public du lot {lot}",
-    },
-    toasts: {
-      handoffIn: "{org} vous a envoyé le lot {lot}. Il attend votre signature.",
     },
   },
 }
