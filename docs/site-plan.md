@@ -53,11 +53,11 @@ Supporting benefits (outcomes, not features):
 
 - **Headline (EN):** Every handoff, signed by both hands.
 - **Headline (FR):** Chaque passation, signée des deux mains.
-- **Subheadline (EN):** ChainProof gives every batch a custody record that the sender and the receiver both sign, with sensor readings sealed along the way. Anyone holding the label can check the whole trip in seconds.
-- **Subheadline (FR):** ChainProof tient pour chaque lot un registre de garde que l'expéditeur et le destinataire signent tous les deux, relevés de capteurs scellés en chemin. Quiconque tient l'étiquette peut vérifier tout le trajet en quelques secondes.
+- **Subheadline (EN):** Sender and receiver both sign every handoff, and sensor readings are sealed on the way. Anyone with the label checks the trip in seconds.
+- **Subheadline (FR):** L'expéditeur et le destinataire signent chaque passation, et les relevés sont scellés en route. Avec l'étiquette, on vérifie le trajet en quelques secondes.
 - **Primary CTA:** "Open the demo" / « Ouvrir la démo » → `/[locale]/app`.
 - **Secondary CTA:** "Check a real label" / « Vérifier une étiquette » → `/[locale]/verify?code=HU-2584`.
-- **Hero visual:** product UI built in code, not a photo: the passport of coffee lot `HU-2584` drawn as a shipping manifest. A route rail runs from Pitalito to Montréal; each leg gets a two-part custody stamp (sender + receiver) that lands in sequence on load, and the integrity line at the bottom ticks "7 of 7 records match the ledger". It shows the product's single idea (two signatures per handoff) in the first second, and it is the same component the passport page uses, so the hero is honest.
+- **Hero visual:** product UI built in code, not a photo: the passport of coffee lot `HU-2584` drawn as a shipping manifest. A route rail runs from Pitalito to Montréal; each leg gets a two-part custody stamp (sender + receiver) that lands in sequence on load, and the integrity line at the bottom ticks "8 of 8 records match the ledger". It shows the product's single idea (two signatures per handoff) in the first second, and it is the same component the passport page uses, so the hero is honest.
 
 ## 4. Page map
 
@@ -65,7 +65,7 @@ All routes live under `/en/…` and `/fr/…`; `/` redirects to the visitor's pr
 
 | Route | Purpose | Sections, in order |
 |-|-|-|
-| `/` | Explain the idea and send people into the demo. | Hero (manifest visual) · "Paper trails can be edited. Signatures can't be un-signed." (before/after comparison) · How custody moves (3 steps, with the three documentary photos) · Breaks stay on the record (cold-chain excursion chart) · Built for three kinds of goods (coffee, vaccines, timber, each linking to its live demo batch) · FAQ · Closing CTA |
+| `/` | Explain the idea and send people into the demo. | Hero (manifest visual, no eyebrow) · How custody moves (3 steps, with the three documentary photos) · Breaks stay on the record (cold-chain excursion chart) · Built for three kinds of goods (coffee, vaccines, timber, each linking to its live demo batch) · FAQ · Closing CTA |
 | `/app` | The ledger workspace (interactive demo). | Wallet gate (connect / reject) → "Acting as" organization · Awaiting your signature (inbox) · In your custody · All batches (filter by status) · Recent network activity |
 | `/app/register` | Flow 1: a producer registers a batch and prints its label. | Role gate (producers only) · Form · Sign prompt · Pending / confirmed / failed · Label with QR code |
 | `/app/batch/[id]` | Everything about one batch; where flows 2 and 3 happen. | Lot header · Route rail with custody marker · Contextual action panel (hand off / review handoff / seal readings / checkpoint) · Tabs: Custody record · Sensor log · Label |
@@ -78,7 +78,7 @@ All routes live under `/en/…` and `/fr/…`; `/` redirects to the visitor's pr
 **Why `/verify` is its own page:** it is the only page a consumer ever sees. A QR code on a bag of coffee must not land inside a wallet-gated workspace.
 **Why `/how-it-works`:** buyers of traceability are auditors and integrators; they need the mechanism (what is signed, what is anchored, what stays off-chain) before they believe the demo.
 
-**Header:** ChainProof logo · How it works · Verify a label · EN/FR switch · theme toggle · "Open the demo" (primary). Inside `/app` the header swaps the CTA for the acting-as wallet, the network badge and a "Demo · simulated data" badge. Mobile: logo + menu button opening a full-height sheet.
+**Header:** ChainProof logo · How it works · Verify a label · EN/FR switch · theme toggle · "Open the demo" (primary). A compact "Demo" chip sits before the EN/FR switch (desktop) and "Demo · simulated data" is in the footer and the mobile menu; nothing else on marketing pages. Inside `/app` the header swaps the CTA for the acting-as wallet (which also holds "Demo controls") and the network badge. Mobile: logo + menu button opening a full-height sheet.
 
 **Footer:** one-line description · How it works · Verify a label · Open the demo · Credits · Project documentation (monark.io) · Source code (GitHub) · "Demo · simulated data" · "Built with Monark" credit.
 
@@ -120,15 +120,15 @@ All wallet actions go through a simulated signature prompt (Confirm / Reject) an
 
 ### Flow 3: seal sensor readings (cold chain)
 1. Acting as **Froid Nord Transport**, open vaccine lot `NV-0417` (2–8 °C). The action panel says "Logger LG-2207 has 36 unsealed readings".
-2. **Review readings** shows the temperature trace against the 2–8 °C band. One stretch reaches 9.4 °C for 40 minutes and is highlighted.
-3. **Seal readings** → sign → pending → *confirmed:* the readings' root hash is anchored, and an **Excursion** flag is added to the record: "9.4 °C peak, 40 min above 8 °C".
+2. **Review readings** shows the temperature trace against the 2–8 °C band. One stretch peaks at 9.3 °C and stays above 8 °C for 30 minutes; it is shaded and labelled.
+3. **Seal readings** → sign → pending → *confirmed:* the readings' root hash is anchored, and an **Excursion** flag is added to the record: "9.3 °C peak, 30 min outside 2–8 °C".
 4. The flag is permanent: the batch shows it everywhere, and when Froid Nord hands off to **Pharmacie du Plateau**, the receiver's review dialog shows the flag and pre-selects "Accept with exception".
 5. *Failed:* readings stay unsealed; retry.
 
 ### Flow 4: verify a label (public, no wallet)
 1. `/verify`: a viewfinder with a slow scan line and a "shelf" of sample labels (coffee, vaccine, timber, and one label whose code is not on the ledger). Or type a lot code.
 2. *Loading:* "Reading the ledger…".
-3. *Found:* the passport (origin, route with custody stamps, flags) and the integrity check that re-computes each record hash and ticks through them: "Verified: 7 of 7 records match the ledger".
+3. *Found:* the passport (origin, route with custody stamps, flags) and the integrity check that re-computes each record hash and ticks through them: "Verified: 8 of 8 records match the ledger".
 4. **Simulate a tampered copy** changes one record in the local copy (the delivered bag count): the check turns that record and every one after it red: "This copy doesn't match the ledger. Record 4 was changed after it was signed."
 5. *Not found:* "No batch with code XX-0000 is on the ledger. Treat this label as suspect." *Malformed code:* "That doesn't look like a lot code (e.g. HU-2584)."
 
@@ -140,22 +140,16 @@ Tone: plain, exact and calm, like a good shipping manifest. Short declarative se
 
 | Section | English | Français |
 |-|-|-|
-| Eyebrow | Supply chain custody records | Registre de garde pour la chaîne d'approvisionnement |
 | Headline | Every handoff, signed by both hands. | Chaque passation, signée des deux mains. |
 | Sub | (see §3) | (voir §3) |
 | CTAs | Open the demo · Check a real label | Ouvrir la démo · Vérifier une étiquette |
 | Hero caption | Lot HU-2584 · Live passport from the demo ledger | Lot HU-2584 · Passeport réel tiré du registre de démo |
-| Compare title | Paper trails can be edited. Signatures can't be un-signed. | Un dossier papier se modifie. Une signature ne se reprend pas. |
-| Compare, left title | The usual trail | La trace habituelle |
-| Compare, left items | Each partner keeps its own spreadsheet. · A delivery note is signed by one side only. · Temperature logs are emailed as PDFs, if at all. · A dispute means weeks of reconciling versions. | Chaque partenaire tient son propre tableur. · Le bon de livraison n'est signé que d'un côté. · Les relevés de température circulent en PDF, quand ils circulent. · Un litige, c'est des semaines à comparer des versions. |
-| Compare, right title | With ChainProof | Avec ChainProof |
-| Compare, right items | One record per batch, shared by everyone who touches it. · Custody moves only when sender and receiver both sign. · Sensor readings are sealed on the way, breaks flagged for good. · A dispute starts from a record both sides already signed. | Un seul registre par lot, partagé par tous ceux qui le manipulent. · La garde ne change de main que si l'expéditeur et le destinataire signent. · Les relevés sont scellés en route et les écarts restent signalés. · Un litige part d'un registre que les deux parties ont déjà signé. |
 | Steps title | How custody moves | Comment la garde circule |
 | Step 1 | **Register at origin.** The producer signs the lot into existence (quantity, origin, certifications) and prints its label. | **Enregistrer à l'origine.** Le producteur crée le lot en le signant (quantité, origine, certifications) et imprime son étiquette. |
 | Step 2 | **Hand off with two signatures.** The sender declares the count and seal. The receiver checks them and signs, or records an exception, or refuses. | **Passer la main à deux signatures.** L'expéditeur déclare le compte et le scellé. Le destinataire vérifie et signe, note un écart ou refuse. |
 | Step 3 | **Verify anywhere.** The label's code opens the passport and re-checks every record against the ledger. | **Vérifier partout.** Le code de l'étiquette ouvre le passeport et revérifie chaque entrée dans le registre. |
 | Breaks title | Breaks stay on the record. | Les écarts restent au registre. |
-| Breaks body | Loggers ride with the batch. When the carrier seals their readings, anything outside the batch's range becomes a flag that follows it to every next receiver. It can be answered, never deleted. | Les enregistreurs voyagent avec le lot. Quand le transporteur scelle leurs relevés, tout ce qui sort de la plage permise devient un signalement qui suit le lot jusqu'au prochain destinataire. On peut y répondre, jamais l'effacer. |
+| Breaks body | Out-of-range readings become a flag that follows the batch. It can be answered, never deleted. | Un relevé hors plage devient un signalement qui suit le lot. On peut y répondre, jamais l'effacer. |
 | Breaks CTA | Seal a logger in the demo | Sceller un enregistreur dans la démo |
 | Goods title | Built for goods that have to prove themselves | Pour les marchandises qui doivent faire leurs preuves |
 | Coffee | **Specialty coffee.** Tie a roaster's bag to the cooperative and the harvest behind it. → Follow lot HU-2611 | **Café de spécialité.** Reliez le sac du torréfacteur à la coopérative et à la récolte. → Suivre le lot HU-2611 |
@@ -289,3 +283,12 @@ Why these numbers: a single rejected pallet of vaccine or a disputed container o
 - No geographic map tiles; routes are schematic rails (cheaper, clearer, no API keys).
 - No document uploads, recalls, GS1 EPCIS import/export or ERP integrations (mentioned on `/how-it-works` as the integration surface, not built).
 - No token, fee or payment of any kind in the demo. ChainProof moves custody, not value, so the "testnet · not financial advice" notice does not apply; the "Demo · simulated data" notice does, everywhere.
+
+## 12. Restraint pass (owner feedback, applied before shipping)
+
+The owner asked every site to carry less text ("Restraint" rules, brand guidelines §8 and §11). What changed from the first build:
+
+- **Home:** removed the eyebrow and the before/after comparison section (it explained what the hero manifest already shows). Five sections remain between hero and footer: How custody moves, Breaks stay on the record, Built for three kinds of goods, FAQ (5 questions, home only), closing CTA. Hero subline cut from 38 to 24 words; the cold-chain section is one line.
+- **Disclaimers:** "Demo · simulated data" appears once in the footer and as a small "Demo" chip in the header (and in the mobile menu). The long demo notice line was removed from the hero, the footer and the wallet gate. The sign prompt says "Signing is free in this demo. No funds move." once per transaction.
+- **App:** the "Try this" guide is a collapsed disclosure instead of a permanent panel; the register page has no intro paragraph, no lot-code hint and no route hint; the unsealed-logger warning is a title only; the seal dialog description is one short line.
+- **Toasts:** the "handoff waiting for you" toast on switching organization was removed (it covered the review dialog on phones); the inbox count already says it. The only toast left is "Demo reset".
