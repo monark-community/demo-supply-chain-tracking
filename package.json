@@ -5,7 +5,9 @@
   "description": "ChainProof: supply chain custody records that the sender and receiver both sign (simulated demo).",
   "scripts": {
     "dev": "next dev --port 3152",
+    "prebuild": "node scripts/check-node.mjs",
     "build": "next build",
+    "prestart": "node scripts/check-node.mjs",
     "start": "next start --port 3152",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
