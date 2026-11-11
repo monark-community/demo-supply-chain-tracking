@@ -10,7 +10,7 @@ This repository is the **interactive demo site**: a Next.js app where you can wa
 
 ## Run it locally
 
-Requirements: Node 22 and pnpm 10.
+Requirements: Node 22.23.4 or newer on the 22 line and pnpm 10.
 
 ```bash
 pnpm install
@@ -82,7 +82,7 @@ UI components come from the [Monark UI registry](https://ui.monark.io) (`@monark
 
 ## Deploy to Vercel
 
-Import the repository in Vercel and deploy with the framework defaults (Next.js, pnpm). No configuration file or environment variable is required. All pages prerender; lots registered in a visitor's browser render their batch page on demand.
+Import the repository in Vercel and deploy with the framework defaults (Next.js, pnpm). No configuration file or environment variable is required. `pnpm build` and `pnpm start` stop on a Node release exposed to CVE-2026-111497. All pages prerender; lots registered in a visitor's browser render their batch page on demand.
 
 ## Screenshots
 
